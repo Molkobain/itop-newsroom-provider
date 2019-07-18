@@ -4,7 +4,7 @@
 * [Configuration](#configuration)
 
 ## Description
-Get notified of extensions releases & updates directly in your iTop!
+Never miss a new extension or updates by being notified directly in the newsroom of your iTop!
 
 _**Disclaimer:** In order to only show unread notifications, the remote server needs to identify you. To do so, this extension retrieves your User ID and your iTop UUID (just like iTop Hub) but **not** your DB UUID. If you don't want this to happen, you can disable the feature in configuration file._
 
