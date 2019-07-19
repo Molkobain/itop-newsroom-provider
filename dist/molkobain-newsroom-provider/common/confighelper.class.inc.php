@@ -51,7 +51,7 @@ class ConfigHelper extends BaseConfigHelper
 
 		// Prepare a unique hash to identify users across all iTop in order to be able for them to tell whiwh news they have already read.
 		// Note: We don't retrieve DB UUID for now as it is not of any use.
-		return hash('fnv1a64', $sITopUUID.'-'.$sUserId);
+		return hash('fnv1a64', $sITopUUID . '-' . $sUserId);
 	}
 
 	/**
@@ -78,7 +78,7 @@ class ConfigHelper extends BaseConfigHelper
 	 */
 	public static function GetViewAllUrl()
 	{
-		return  static::MakeUrl('view_all');
+		return static::MakeUrl('view_all');
 	}
 
 	/**

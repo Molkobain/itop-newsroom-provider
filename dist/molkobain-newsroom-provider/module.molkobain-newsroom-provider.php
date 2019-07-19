@@ -36,14 +36,10 @@ SetupWebPage::AddModule(
 			'common/confighelper.class.inc.php',
 			'core/newsroomprovider.class.inc.php',
 		),
-		'webservice' => array(
-
+		'webservice' => array(),
+		'data.struct' => array(// add your 'structure' definition XML files here,
 		),
-		'data.struct' => array(
-			// add your 'structure' definition XML files here,
-		),
-		'data.sample' => array(
-			// add your sample data XML files here,
+		'data.sample' => array(// add your sample data XML files here,
 		),
 
 		// Documentation
@@ -55,7 +51,7 @@ SetupWebPage::AddModule(
 		//
 		'settings' => array(
 			// Module specific settings go here, if any
-            'enabled' => true,
+			'enabled' => true,
 		),
 	)
 );
