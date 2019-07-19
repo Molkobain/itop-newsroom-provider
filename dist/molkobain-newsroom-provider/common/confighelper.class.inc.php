@@ -53,45 +53,4 @@ class ConfigHelper extends BaseConfigHelper
 		// Note: We don't retrieve DB UUID for now as it is not of any use.
 		return hash('fnv1a64', $sITopUUID . '-' . $sUserId);
 	}
-
-	/**
-	 * @return string
-	 * @todo
-	 */
-	public static function GetMarkAllAsReadUrl()
-	{
-		return static::MakeUrl('mark_all_as_read');
-	}
-
-	/**
-	 * @return string
-	 * @todo
-	 */
-	public static function GetFetchUrl()
-	{
-		return static::MakeUrl('fetch');
-	}
-
-	/**
-	 * @return string
-	 * @todo
-	 */
-	public static function GetViewAllUrl()
-	{
-		return static::MakeUrl('view_all');
-	}
-
-	/**
-	 * Returns an URL to the news editor for the $sOperation and current user
-	 *
-	 * @param string $sOperation
-	 *
-	 * @return string
-	 */
-	private static function MakeUrl($sOperation)
-	{
-		return static::GetSetting('endpoint')
-			. '&operation=' . $sOperation
-			. '&user=' . urlencode(static::GetUserHash());
-	}
 }

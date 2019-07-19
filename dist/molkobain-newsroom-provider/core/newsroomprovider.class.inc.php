@@ -64,9 +64,12 @@ if(class_exists('NewsroomProviderBase'))
 			return 'Molkobain I/O';
 		}
 
+		/**
+		 * @inheritDoc
+		 */
 		public function GetMarkAllAsReadURL()
 		{
-			return ConfigHelper::GetMarkAllAsReadUrl();
+			return $this->MakeUrl('mark_all_as_read');
 		}
 
 		/**
@@ -74,7 +77,7 @@ if(class_exists('NewsroomProviderBase'))
 		 */
 		public function GetFetchURL()
 		{
-			return ConfigHelper::GetFetchUrl();
+			return $this->MakeUrl('fetch');
 		}
 
 		/**
@@ -82,7 +85,7 @@ if(class_exists('NewsroomProviderBase'))
 		 */
 		public function GetViewAllURL()
 		{
-			return ConfigHelper::GetViewAllUrl();
+			return $this->MakeUrl('view_all');
 		}
 
 		/**
@@ -128,6 +131,20 @@ if(class_exists('NewsroomProviderBase'))
 		public function GetPreferencesUrl()
 		{
 			return null;
+		}
+
+		/**
+		 * Returns an URL to the news editor for the $sOperation and current user
+		 *
+		 * @param string $sOperation
+		 *
+		 * @return string
+		 */
+		private function MakeUrl($sOperation)
+		{
+			return ConfigHelper::GetSetting('endpoint')
+				. '&operation=' . $sOperation
+				. '&user=' . urlencode(ConfigHelper::GetUserHash());
 		}
 	}
 }
