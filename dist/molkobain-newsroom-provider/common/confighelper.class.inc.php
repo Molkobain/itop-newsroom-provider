@@ -21,6 +21,8 @@ use UserRights;
 class ConfigHelper extends BaseConfigHelper
 {
 	const MODULE_NAME = 'molkobain-datacenter-view';
+	const API_VERSION = '1.0';
+
 	const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\NewsroomProvider\\Common\\Helper\\ConfigHelper';
 
 	// Note: Mind to update defaults values in the module file when changing those default values.
@@ -35,6 +37,16 @@ class ConfigHelper extends BaseConfigHelper
 	public static function IsDebugEnabled()
 	{
 		return static::GetSetting('debug');
+	}
+
+	/**
+	 * Returns the version of the API called on the remote server
+	 *
+	 * @return string
+	 */
+	public static function GetVersion()
+	{
+		return static::API_VERSION;
 	}
 
 	/**
