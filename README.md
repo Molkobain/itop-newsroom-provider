@@ -11,6 +11,11 @@ _**Disclaimer:** In order to only show unread notifications, the remote server n
 ## Compatibility
 Compatible with iTop 2.6+
 
+## Dependencies
+* Module `molkobain-handy-framework/1.2.4`
+
+*Note: Dependencies are not included in this extension as it is supposed to be packaged with "real" extensions.*
+
 ## Configuration
 No configuration needed.
 
