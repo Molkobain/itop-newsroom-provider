@@ -9,8 +9,8 @@
 
 namespace Molkobain\iTop\Extension\NewsroomProvider\Common\Helper;
 
-use UserRights;
 use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper as BaseConfigHelper;
+use UserRights;
 
 /**
  * Class ConfigHelper
@@ -65,19 +65,25 @@ class ConfigHelper extends BaseConfigHelper
 	}
 
 	/**
+	 * Returns an URL to the news editor for the $sOperation and current user
+	 *
+	 * Note: User ID and iTop UUID are send as a non-reversible hash to ensure user's privacy
+	 *
 	 * @param string $sOperation
 	 *
 	 * @return string
-	 * @todo
 	 */
 	private static function MakeUrl($sOperation)
 	{
+		$sITopUUID = (string) trim(@file_get_contents(APPROOT . 'data/instance.txt'), "{} \n");
+		$sUserId = UserRights::GetUserId();
+
+		// Prepare a unique hash to identify users across all iTop in order to be able for them to tell whiwh news they have already read.
 		// Note: We don't retrieve DB UUID for now as it is not of any use.
-		// User ID / iTop UUID is enough to identify a user and know if it has already "read" a news.
+		$sUserHash = hash('fnv1a64', $sITopUUID.'-'.$sUserId);
+
 		return static::GetSetting('endpoint')
 			. '&operation=' . $sOperation
-			//. '&uuid[bdd]=' . urlencode((string) trim(DBProperty::GetProperty('database_uuid', ''), '{}'))
-			. '&uuid[file]=' . urlencode((string) trim(@file_get_contents(APPROOT . 'data/instance.txt'), "{} \n"))
-			. '&uuid[user]=' . urlencode(UserRights::GetUserId());
+			. '&user=' . urlencode($sUserHash);
 	}
 }
