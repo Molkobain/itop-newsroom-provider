@@ -24,7 +24,7 @@ SetupWebPage::AddModule(
 		// Setup
 		//
 		'dependencies' => array(
-			'itop-welcome-itil/2.6.0',
+			'itop-welcome-itil/2.4.0',
 			'molkobain-handy-framework/1.2.4',
 		),
 		'mandatory' => true,

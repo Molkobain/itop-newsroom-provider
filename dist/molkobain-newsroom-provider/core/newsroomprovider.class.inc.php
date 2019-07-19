@@ -14,116 +14,120 @@ use NewsroomProviderBase;
 use User;
 use UserRights;
 
-/**
- * Class MolkobainNewsroomProvider
- *
- * Note: This is greatly inspired by the itop-hub-connector module.
- *
- * @package Molkobain\iTop\Extension\NewsroomProvider\Core
- * @since v1.0.0
- */
-class MolkobainNewsroomProvider extends NewsroomProviderBase
+// Protection for iTop older than 2.6.0 when the extension is packaged with another.
+if(class_exists('NewsroomProviderBase'))
 {
 	/**
-	 * @inheritDoc
-	 */
-	public function GetTTL()
-	{
-		// Update every hour
-		return 60 * 60;
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function IsApplicable(User $oUser = null)
-	{
-		if(!ConfigHelper::IsEnabled())
-		{
-			return false;
-		}
-		elseif($oUser !== null)
-		{
-			return UserRights::IsAdministrator($oUser);
-		}
-		else
-		{
-			return false;
-		}
-
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function GetLabel()
-	{
-		return 'Molkobain I/O';
-	}
-
-	public function GetMarkAllAsReadURL()
-	{
-		return ConfigHelper::GetMarkAllAsReadUrl();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function GetFetchURL()
-	{
-		return ConfigHelper::GetFetchUrl();
-	}
-
-	/**
-	 * @inheritDoc
-	 */
-	public function GetViewAllURL()
-	{
-		return ConfigHelper::GetViewAllUrl();
-	}
-
-	/**
-	 * @inheritDoc
+	 * Class MolkobainNewsroomProvider
 	 *
-	 * Note: Placeholders are only used in the news' URL
+	 * Note: This is greatly inspired by the itop-hub-connector module.
+	 *
+	 * @package Molkobain\iTop\Extension\NewsroomProvider\Core
+	 * @since v1.0.0
 	 */
-	public function GetPlaceholders()
+	class MolkobainNewsroomProvider extends NewsroomProviderBase
 	{
-		$aPlaceholders = array();
-
-		$oUser = UserRights::GetUserObject();
-		if($oUser !== null)
+		/**
+		 * @inheritDoc
+		 */
+		public function GetTTL()
 		{
-			$aPlaceholders['%user_login%'] = $oUser->Get('login');
-			$aPlaceholders['%user_hash%'] = ConfigHelper::GetUserHash();
+			// Update every hour
+			return 60 * 60;
 		}
 
-		$oContact = UserRights::GetContactObject();
-		if($oContact !== null)
+		/**
+		 * @inheritDoc
+		 */
+		public function IsApplicable(User $oUser = null)
 		{
-			$aPlaceholders['%contact_firstname%'] = $oContact->Get('first_name');
-			$aPlaceholders['%contact_lastname%'] = $oContact->Get('name');
-			$aPlaceholders['%contact_email%'] = $oContact->Get('email');
-			$aPlaceholders['%contact_organization%'] = $oContact->Get('org_id_friendlyname');
-			$aPlaceholders['%contact_location%'] = $oContact->Get('location_id_friendlyname');
-		}
-		else
-		{
-			$aPlaceholders['%contact_firstname%'] = '';
-			$aPlaceholders['%contact_lastname%'] = '';
-			$aPlaceholders['%contact_email%'] = '';
-			$aPlaceholders['%contact_organization%'] = '';
-			$aPlaceholders['%contact_location%'] = '';
+			if(!ConfigHelper::IsEnabled())
+			{
+				return false;
+			}
+			elseif($oUser !== null)
+			{
+				return UserRights::IsAdministrator($oUser);
+			}
+			else
+			{
+				return false;
+			}
+
 		}
 
-		return $aPlaceholders;
-	}
+		/**
+		 * @inheritDoc
+		 */
+		public function GetLabel()
+		{
+			return 'Molkobain I/O';
+		}
 
-	/**
-	 * @inheritDoc
-	 */
-	public function GetPreferencesUrl()
-	{
-		return null;
+		public function GetMarkAllAsReadURL()
+		{
+			return ConfigHelper::GetMarkAllAsReadUrl();
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		public function GetFetchURL()
+		{
+			return ConfigHelper::GetFetchUrl();
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		public function GetViewAllURL()
+		{
+			return ConfigHelper::GetViewAllUrl();
+		}
+
+		/**
+		 * @inheritDoc
+		 *
+		 * Note: Placeholders are only used in the news' URL
+		 */
+		public function GetPlaceholders()
+		{
+			$aPlaceholders = array();
+
+			$oUser = UserRights::GetUserObject();
+			if($oUser !== null)
+			{
+				$aPlaceholders['%user_login%'] = $oUser->Get('login');
+				$aPlaceholders['%user_hash%'] = ConfigHelper::GetUserHash();
+			}
+
+			$oContact = UserRights::GetContactObject();
+			if($oContact !== null)
+			{
+				$aPlaceholders['%contact_firstname%'] = $oContact->Get('first_name');
+				$aPlaceholders['%contact_lastname%'] = $oContact->Get('name');
+				$aPlaceholders['%contact_email%'] = $oContact->Get('email');
+				$aPlaceholders['%contact_organization%'] = $oContact->Get('org_id_friendlyname');
+				$aPlaceholders['%contact_location%'] = $oContact->Get('location_id_friendlyname');
+			}
+			else
+			{
+				$aPlaceholders['%contact_firstname%'] = '';
+				$aPlaceholders['%contact_lastname%'] = '';
+				$aPlaceholders['%contact_email%'] = '';
+				$aPlaceholders['%contact_organization%'] = '';
+				$aPlaceholders['%contact_location%'] = '';
+			}
+
+			return $aPlaceholders;
+		}
+
+		/**
+		 * @inheritDoc
+		 */
+		public function GetPreferencesUrl()
+		{
+			return null;
+		}
 	}
 }
