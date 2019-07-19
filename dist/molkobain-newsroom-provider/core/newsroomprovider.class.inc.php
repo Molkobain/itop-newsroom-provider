@@ -84,10 +84,39 @@ class MolkobainNewsroomProvider extends NewsroomProviderBase
 
 	/**
 	 * @inheritDoc
+	 *
+	 * Note: Placeholders are only used in the news' URL
 	 */
 	public function GetPlaceholders()
 	{
-		return array();
+		$aPlaceholders = array();
+
+		$oUser = UserRights::GetUserObject();
+		if($oUser !== null)
+		{
+			$aPlaceholders['%user_login%'] = $oUser->Get('login');
+			$aPlaceholders['%user_hash%'] = ConfigHelper::GetUserHash();
+		}
+
+		$oContact = UserRights::GetContactObject();
+		if($oContact !== null)
+		{
+			$aPlaceholders['%contact_firstname%'] = $oContact->Get('first_name');
+			$aPlaceholders['%contact_lastname%'] = $oContact->Get('name');
+			$aPlaceholders['%contact_email%'] = $oContact->Get('email');
+			$aPlaceholders['%contact_organization%'] = $oContact->Get('org_id_friendlyname');
+			$aPlaceholders['%contact_location%'] = $oContact->Get('location_id_friendlyname');
+		}
+		else
+		{
+			$aPlaceholders['%contact_firstname%'] = '';
+			$aPlaceholders['%contact_lastname%'] = '';
+			$aPlaceholders['%contact_email%'] = '';
+			$aPlaceholders['%contact_organization%'] = '';
+			$aPlaceholders['%contact_location%'] = '';
+		}
+
+		return $aPlaceholders;
 	}
 
 	/**
