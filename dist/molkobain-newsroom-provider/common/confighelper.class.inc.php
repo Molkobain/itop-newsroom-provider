@@ -25,7 +25,7 @@ class ConfigHelper extends BaseConfigHelper
 
 	// Note: Mind to update defaults values in the module file when changing those default values.
 	const DEFAULT_SETTING_DEBUG = false;
-	const DEFAULT_SETTING_ENDPOINT = 'https://www.molkobain.com/support/pages/exec.php?exec_module=molkobain-newsroom-handler&exec_page=index.php';
+	const DEFAULT_SETTING_ENDPOINT = 'https://www.molkobain.com/support/pages/exec.php?exec_module=molkobain-newsroom-editor&exec_page=index.php';
 
 	/**
 	 * Returns true if the debug option is enabled
