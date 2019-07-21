@@ -52,17 +52,30 @@ class ConfigHelper extends BaseConfigHelper
 	/**
 	 * Returns an hash to identify the current user
 	 *
-	 * Note: User ID and iTop UUID are send as a non-reversible hash to ensure user's privacy
+	 * Note: User ID is sent as a non-reversible hash to ensure user's privacy
 	 *
 	 * @return string
 	 */
 	public static function GetUserHash()
 	{
-		$sITopUUID = (string) trim(@file_get_contents(APPROOT . 'data/instance.txt'), "{} \n");
 		$sUserId = UserRights::GetUserId();
 
-		// Prepare a unique hash to identify users across all iTop in order to be able for them to tell whiwh news they have already read.
-		// Note: We don't retrieve DB UUID for now as it is not of any use.
-		return hash('fnv1a64', $sITopUUID . '-' . $sUserId);
+		// Prepare a unique hash to identify users across all iTops in order to be able for them to tell which news they have already read.
+		return hash('fnv1a64', $sUserId);
+	}
+
+	/**
+	 * Returns an hash to identify the current iTop instance
+	 *
+	 * Note: iTop UUID is sent as a non-reversible hash to ensure user's privacy
+	 *
+	 * @return string
+	 */
+	public static function GetInstanceHash()
+	{
+		$sITopUUID = (string) trim(@file_get_contents(APPROOT . 'data/instance.txt'), "{} \n");
+
+		// Note: We don't retrieve DB UUID for now as it is not of any use for now.
+		return hash('fnv1a64', $sITopUUID);
 	}
 }
