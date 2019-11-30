@@ -5,9 +5,9 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Molkobain's newsroom provider]]></label>
 	<description><![CDATA[Get notified of extensions releases & updates directly in your iTop!]]></description>
-	<version>1.0.1</version>
-	<release_date>2019-07-24</release_date>
-	<version_description><![CDATA[Fix iTop's markdown rendering of line endings in the newsroom popup]]></version_description>
+	<version>1.0.2</version>
+	<release_date>2019-11-30</release_date>
+	<version_description><![CDATA[Fix iTop's markdown rendering of newsroom items that have no space between paragraphs making it difficult to read]]></version_description>
 	<itop_version_min>2.6.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>
