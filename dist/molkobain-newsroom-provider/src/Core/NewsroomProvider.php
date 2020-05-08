@@ -9,7 +9,7 @@
 
 namespace Molkobain\iTop\Extension\NewsroomProvider\Core;
 
-use Molkobain\iTop\Extension\NewsroomProvider\Common\Helper\ConfigHelper;
+use Molkobain\iTop\Extension\NewsroomProvider\Helper\ConfigHelper;
 use NewsroomProviderBase;
 use User;
 use UserRights;

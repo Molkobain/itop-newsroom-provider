@@ -7,22 +7,23 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-namespace Molkobain\iTop\Extension\NewsroomProvider\Console\Extension;
+namespace Molkobain\iTop\Extension\NewsroomProvider\Hook\Console;
 
 use iPageUIExtension;
 use iTopWebPage;
-use Molkobain\iTop\Extension\NewsroomProvider\Common\Helper\ConfigHelper;
+use Molkobain\iTop\Extension\NewsroomProvider\Helper\ConfigHelper;
 use utils;
 
 /**
  * Class PageUIExtension
  *
- * @package Molkobain\iTop\Extension\NewsroomProvider\Console\Extension
+ * @package Molkobain\iTop\Extension\NewsroomProvider\Hook\Console
  */
 class PageUIExtension implements iPageUIExtension
 {
 	/**
 	 * @inheritDoc
+	 * @throws \Exception
 	 */
 	public function GetNorthPaneHtml(iTopWebPage $oPage)
 	{
@@ -34,7 +35,7 @@ class PageUIExtension implements iPageUIExtension
 
 		// Add external files now as it might make some glitches if loaded after async call
 		// - CSS files
-		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/common/css/default.scss');
+		$oPage->add_saas('env-' . utils::GetCurrentEnvironment() . '/' . ConfigHelper::GetModuleCode() . '/asset/css/default.scss');
 	}
 
 	/**

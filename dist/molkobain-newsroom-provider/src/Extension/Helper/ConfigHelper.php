@@ -7,15 +7,15 @@
  * Use of this extension is bound by the license you purchased. A license grants you a non-exclusive and non-transferable right to use and incorporate the item in your personal or commercial projects. There are several licenses available (see https://www.molkobain.com/usage-licenses/ for more informations)
  */
 
-namespace Molkobain\iTop\Extension\NewsroomProvider\Common\Helper;
+namespace Molkobain\iTop\Extension\NewsroomProvider\Helper;
 
-use Molkobain\iTop\Extension\HandyFramework\Common\Helper\ConfigHelper as BaseConfigHelper;
+use Molkobain\iTop\Extension\HandyFramework\Helper\ConfigHelper as BaseConfigHelper;
 use UserRights;
 
 /**
  * Class ConfigHelper
  *
- * @package Molkobain\iTop\Extension\NewsroomProvider\Common\Helper
+ * @package Molkobain\iTop\Extension\NewsroomProvider\Helper
  * @since v1.0.0
  */
 class ConfigHelper extends BaseConfigHelper
@@ -23,7 +23,7 @@ class ConfigHelper extends BaseConfigHelper
 	const MODULE_NAME = 'molkobain-newsroom-provider';
 	const API_VERSION = '1.1';
 
-	const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\NewsroomProvider\\Common\\Helper\\ConfigHelper';
+	const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\NewsroomProvider\\Helper\\ConfigHelper';
 
 	// Note: Mind to update defaults values in the module file when changing those default values.
 	const DEFAULT_SETTING_DEBUG = false;
