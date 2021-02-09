@@ -9,6 +9,7 @@
 
 namespace Molkobain\iTop\Extension\NewsroomProvider\Core;
 
+use MetaModel;
 use Molkobain\iTop\Extension\NewsroomProvider\Helper\ConfigHelper;
 use NewsroomProviderBase;
 use User;
@@ -89,9 +90,10 @@ if(class_exists('NewsroomProviderBase'))
 		}
 
 		/**
-		 * @inheritDoc
-		 *
 		 * Note: Placeholders are only used in the news' URL
+		 *
+		 * @inheritDoc
+		 * @throws \Exception
 		 */
 		public function GetPlaceholders()
 		{
@@ -104,22 +106,35 @@ if(class_exists('NewsroomProviderBase'))
 				$aPlaceholders['%user_hash%'] = ConfigHelper::GetUserHash();
 			}
 
+			// Default contact placeholders values
+			$aPlaceholders['%contact_firstname%'] = '';
+			$aPlaceholders['%contact_lastname%'] = '';
+			$aPlaceholders['%contact_email%'] = '';
+			$aPlaceholders['%contact_organization%'] = '';
+			$aPlaceholders['%contact_location%'] = '';
+
+			// Check if we can have a better value for those placeholders
 			$oContact = UserRights::GetContactObject();
 			if($oContact !== null)
 			{
-				$aPlaceholders['%contact_firstname%'] = $oContact->Get('first_name');
-				$aPlaceholders['%contact_lastname%'] = $oContact->Get('name');
-				$aPlaceholders['%contact_email%'] = $oContact->Get('email');
-				$aPlaceholders['%contact_organization%'] = $oContact->Get('org_id_friendlyname');
-				$aPlaceholders['%contact_location%'] = $oContact->Get('location_id_friendlyname');
-			}
-			else
-			{
-				$aPlaceholders['%contact_firstname%'] = '';
-				$aPlaceholders['%contact_lastname%'] = '';
-				$aPlaceholders['%contact_email%'] = '';
-				$aPlaceholders['%contact_organization%'] = '';
-				$aPlaceholders['%contact_location%'] = '';
+				$sContactClass = get_class($oContact);
+				$aPlaceholdersAttCodes = array(
+					'%contact_firstname%' => 'first_name',
+					'%contact_lastname%' => 'name',
+					'%contact_email%' => 'email',
+					'%contact_organization%' => 'org_id_friendlyname',
+					'%contact_location%' => 'location_id_friendlyname',
+				);
+				foreach($aPlaceholdersAttCodes as $sPlaceholderCode => $sPlaceholderAttCode)
+				{
+					// Skip invalid attributes (non standard DM)
+					if(!MetaModel::IsValidAttCode($sContactClass, $sPlaceholderAttCode))
+					{
+						continue;
+					}
+
+					$aPlaceholders[$sPlaceholderCode] = $oContact->Get($sPlaceholderAttCode);
+				}
 			}
 
 			return $aPlaceholders;
