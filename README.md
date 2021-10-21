@@ -19,7 +19,7 @@ _Application name and version are also retrieved for statistics. They are only u
 Compatible with iTop 2.4.1+
 
 ## Dependencies
-* Module `molkobain-handy-framework/1.2.4`
+* Module `molkobain-handy-framework/1.5.1`
 
 *Note: Dependencies are not included in this extension as it is supposed to be packaged with "real" extensions.*
 
