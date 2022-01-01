@@ -5,10 +5,10 @@
 	<author><![CDATA[Guillaume Lajarige]]></author>
 	<label><![CDATA[Molkobain's newsroom provider]]></label>
 	<description><![CDATA[Get notified of extensions releases & updates directly in your iTop!]]></description>
-	<version>1.3.0</version>
+	<version>1.4.0</version>
 	<release_date>2021-10-20</release_date>
-	<version_description><![CDATA[Add compatibility with iTop 3.0+]]></version_description>
-	<itop_version_min>2.4.1</itop_version_min>
+	<version_description><![CDATA[Remove compatibility with iTop 2.5 and older]]></version_description>
+	<itop_version_min>2.6.0</itop_version_min>
 	<status>stable</status>
 	<mandatory>false</mandatory>
 	<more_info_url>https://github.com/Molkobain/itop-newsroom-provider</more_info_url>
