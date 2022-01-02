@@ -53,9 +53,6 @@ SetupWebPage::AddModule(
 
 		// Default settings
 		//
-		'settings' => array(
-			// Module specific settings go here, if any
-			'enabled' => true,
-		),
+		'settings' => array(),
 	)
 );
