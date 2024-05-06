@@ -159,11 +159,13 @@ if(class_exists('NewsroomProviderBase'))
 		{
 			return ConfigHelper::GetSetting('endpoint')
 				. '&operation=' . $sOperation
-				. '&version=' . ConfigHelper::GetVersion()
+				. '&version=' . ConfigHelper::GetAPIVersion()
 				. '&user=' . urlencode(ConfigHelper::GetUserHash())
-				. '&instance=' . urlencode(ConfigHelper::GetInstanceHash())
+				. '&instance=' . urlencode(ConfigHelper::GetWebInstanceHashAsEncrypted())
 				. '&app-name=' . urlencode(ConfigHelper::GetApplicationName())
-				. '&app-version=' . urlencode(ConfigHelper::GetApplicationVersion());
+				. '&app-version=' . urlencode(ConfigHelper::GetApplicationVersion())
+				. '&php-version=' . urlencode(ConfigHelper::GetPHPVersionAsEncrypted())
+				. '&molkobain-modules=' . urlencode(ConfigHelper::GetMolkobainInstalledModulesAsEncrypted());
 		}
 	}
 }
