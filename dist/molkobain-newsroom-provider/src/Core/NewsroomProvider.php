@@ -142,10 +142,11 @@ if(class_exists('NewsroomProviderBase'))
 
 		/**
 		 * @inheritDoc
+		 * @since 1.7.0 Return an URL instead of null
 		 */
 		public function GetPreferencesUrl()
 		{
-			return null;
+			return $this->MakeUrl('preferences');
 		}
 
 		/**
