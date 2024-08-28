@@ -24,7 +24,7 @@ use utils;
 class ConfigHelper extends BaseConfigHelper
 {
 	const MODULE_NAME = 'molkobain-newsroom-provider';
-	const API_VERSION = '1.2';
+	const API_VERSION = '1.3';
 
 	const SETTING_CONST_FQCN = 'Molkobain\\iTop\\Extension\\NewsroomProvider\\Helper\\ConfigHelper';
 
@@ -94,25 +94,27 @@ class ConfigHelper extends BaseConfigHelper
 	}
 
 	/**
-	 * @return string Encrypted UUID of the iTop web instance
+	 * @return string Encrypted UUID of the iTop web instance, non-reversible to ensure user's privacy
 	 * @since v1.6.0 Renamed from GetInstanceHash to GetWebInstanceHashAsEncrypted
+	 * @since v1.7.0 Renamed from GetWebInstanceHashAsEncrypted to GetWebInstanceHash
 	 */
-	public static function GetWebInstanceHashAsEncrypted()
+	public static function GetWebInstanceHash()
 	{
 		$sITopUUID = (string) trim(@file_get_contents(APPROOT . 'data/instance.txt'), "{} \n");
 
-		return static::EncryptData($sITopUUID);
+		return hash('fnv1a64', $sITopUUID);
 	}
 
 	/**
-	 * @return string Encrypted UUID of the iTop database instance
+	 * @return string Encrypted UUID of the iTop database instance, non-reversible to ensure user's privacy
 	 * @since v1.6.0
+	 * @since v1.7.0 Renamed from GetDBInstanceHashAsEncrypted to GetDBInstanceHash
 	 */
-	public static function GetDBInstanceHashAsEncrypted()
+	public static function GetDBInstanceHash()
 	{
 		$sITopUUID = (string) trim(DBProperty::GetProperty('database_uuid', ''), "{}");
 
-		return static::EncryptData($sITopUUID);
+		return hash('fnv1a64', $sITopUUID);
 	}
 
 	/**
@@ -156,22 +158,21 @@ class ConfigHelper extends BaseConfigHelper
 	}
 
 	/**
-	 * @return string Encrypted pipe-separated list of installed Molkobain modules
-	 * @since v1.6.0
+	 * @return string Pipe-separated list of installed Molkobain modules
+	 * @since v1.7.0
 	 */
-	public static function GetMolkobainInstalledModulesAsEncrypted()
+	public static function GetMolkobainInstalledModules()
 	{
 		/** @var string[] $aMolkobainModulesIDs */
 		$aMolkobainModulesIDs = [];
 
-		/** @var \MFModule $oMFModule */
-		foreach (MetaModel::GetLoadedModules() as $oMFModule) {
-			if (strpos($oMFModule->GetName(), 'molkobain-') === 0) {
-				$aMolkobainModulesIDs[] = $oMFModule->GetId();
+		foreach (GetModulesInfo() as $sModuleCode => $aModuleData) {
+			if (strpos($sModuleCode, 'molkobain-') === 0) {
+				$aMolkobainModulesIDs[] = $sModuleCode . '/' . $aModuleData['version'];
 			}
 		}
 
-		return static::EncryptData(implode('|', $aMolkobainModulesIDs));
+		return implode('|', $aMolkobainModulesIDs);
 	}
 
 	/**
