@@ -13,7 +13,7 @@ Never miss a new extension or updates by being notified directly in the newsroom
 
 _**Disclaimer:** In order to only show unread notifications, the remote server needs to identify you. To do so, this extension retrieves your User ID and your iTop UUID **BUT** transforms them into a non-reversible hash **before** sending it to the remote server in order to preserve your privacy._
 
-_Application name and version, as well as PHP version and Molkobain installed modules are also retrieved for statistics. They are only used to know which versions of iTop / PHP my extensions should keep compatibility with. 👨‍🔧_
+_Application name, version and URI; as well as PHP version and Molkobain installed modules are also retrieved for statistics. They are only used to know which versions of iTop / PHP my extensions should keep compatibility with. 👨‍🔧_
 
 ## Compatibility
 Compatible with iTop 2.6+
