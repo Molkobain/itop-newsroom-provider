@@ -37,9 +37,14 @@ class PageProductBeam implements iBackofficeReadyScriptExtension
             return "";
         }
 
-			if (false === ConfigHelper::IsCombodoProductPackage()) {
-				return "";
-			}
+        if (false === ConfigHelper::IsCombodoProductPackage()) {
+            return "";
+        }
+
+        // Since Combodo request for their N°9773 bug, we made this possible to disable for customers which server don't have Internet access, otherwise it would introduce a 30s delay on each page as the beam could not reach our server
+        if (false === ConfigHelper::IsEnabled()) {
+            return "";
+        }
 
         if (false === Session::IsInitialized()) {
             return "";
