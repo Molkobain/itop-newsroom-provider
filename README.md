@@ -16,7 +16,7 @@ _**Disclaimer:** In order to only show unread notifications, the remote server n
 _Application name, version and URI; as well as PHP version and Molkobain installed modules are also retrieved for statistics. They are only used to know which versions of iTop / PHP my extensions should keep compatibility with. 👨‍🔧_
 
 ## Compatibility
-Compatible with iTop 2.6+
+Compatible with iTop 3.2+
 
 ## Dependencies
 * Module [`molkobain-handy-framework`](https://github.com/Molkobain/itop-handy-framework)
